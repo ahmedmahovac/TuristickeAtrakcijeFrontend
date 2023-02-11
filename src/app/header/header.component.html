@@ -1,1 +1,22 @@
-<p>header works!</p>
+<nav class="navbar navbar-expand-md navbar-light bg-light fixed-top p-1">
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-bs-toggle="collapse"
+    data-bs-target="#navbarNav"
+    aria-controls="navbarNav"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <div class="navbar-nav">
+      <a [routerLink]="'/'" class="nav-item nav-link" href="#">Home</a>
+      <a [routerLink]="'/login'" class="nav-item nav-link" href="#">Login</a>
+      <a [routerLink]="'/register'" class="nav-item nav-link" href="#"
+        >Register</a
+      >
+    </div>
+  </div>
+</nav>
