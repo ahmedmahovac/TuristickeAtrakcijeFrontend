@@ -1,1 +1,24 @@
-<p>search-rate-attractions works!</p>
+<div class="container">
+<h2 class="text-center">Search and rate attractions</h2>
+<div class="input-group rounded">
+    <input #search (input)="handleSearchInputChange(search.value)" type="search" class="form-control rounded" placeholder="Search attractions" aria-label="Search" aria-describedby="search-addon" />
+    <span class="input-group-text border-0" id="search-addon">
+      <i class="fa fa-search"></i>
+    </span>
+</div>
+ <div class="text-center mt-2">
+<div class="form-check form-check-inline">
+  <input class="form-check-input" type="radio" id="popularRadio" value="POPULAR" name="popularityRadio" #popular (change)="handlePopularityChange(popular.value)">
+  <label class="form-check-label" for="popularRadio">Popular</label>
+</div>
+<div class="form-check form-check-inline">
+  <input class="form-check-input" type="radio" id="veryPopularRadio" value="VERYPOPULAR" name="popularityRadio" #veryPopular (change)="handlePopularityChange(veryPopular.value)">
+  <label class="form-check-label" for="veryPopularRadio">Very popular</label>
+</div>
+<div class="form-check form-check-inline">
+  <input class="form-check-input" type="radio" id="extremelyPopularRadio" value="EXTREMELYPOPULAR" name="popularityRadio" #extremelyPopular (change)="handlePopularityChange(extremelyPopular.value)">
+  <label class="form-check-label" for="extremelyPopularRadio">Extremely popular</label>
+</div>
+</div>
+<app-attractions-container></app-attractions-container>
+</div>
