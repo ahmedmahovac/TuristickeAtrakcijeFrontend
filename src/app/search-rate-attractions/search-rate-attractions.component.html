@@ -7,6 +7,10 @@
     </span>
 </div>
  <div class="text-center mt-2">
+  <div class="form-check form-check-inline">
+    <input class="form-check-input" type="radio" id="noneRadio" value="" name="popularityRadio" #none (change)="handlePopularityChange(none.value)" checked>
+    <label class="form-check-label" for="noneRadio">None</label>
+  </div>
 <div class="form-check form-check-inline">
   <input class="form-check-input" type="radio" id="popularRadio" value="POPULAR" name="popularityRadio" #popular (change)="handlePopularityChange(popular.value)">
   <label class="form-check-label" for="popularRadio">Popular</label>
@@ -20,5 +24,5 @@
   <label class="form-check-label" for="extremelyPopularRadio">Extremely popular</label>
 </div>
 </div>
-<app-attractions-container></app-attractions-container>
+<app-attractions-container [attractions]="attractions" [searchRequestSent]="searchRequestSent"></app-attractions-container>
 </div>

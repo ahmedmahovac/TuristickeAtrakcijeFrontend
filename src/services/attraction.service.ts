@@ -14,13 +14,13 @@ export class AttractionService {
     console.log("poslane vrijednosti " + searchValue + " " + popularityValue);
     let query="";
     if(searchValue!=""){
-      query=query+"name=\""+searchValue+"\"";
+      query=query+"name="+searchValue;
     }
     if(popularityValue!=""){
       if(searchValue!=""){
         query=query+"&";
       }
-      query=query+"popularity=\""+popularityValue+"\"";
+      query=query+"popularity="+popularityValue+"";
     }
     console.log(query);
     return firstValueFrom(

@@ -17,15 +17,19 @@ export class SearchRateAttractionsComponent {
   timer: ReturnType<typeof setTimeout> = setTimeout(() => { });
   searchValue: String = "";
   selectedPopularity: String = "";
+  searchRequestSent: Boolean = false;
   attractions: Attraction[] = [];
 
   handleSearchInputChange(searchValue: String){
     this.searchValue=searchValue;
     clearTimeout(this.timer);
       this.timer = setTimeout(() => {
+        this.searchRequestSent=true;
         console.log("sending api request now"); 
         this.attractionService.searchAttractions(this.searchValue, this.selectedPopularity).then((attractions)=>{
           console.log("dobavio sve atrakcije " + attractions.length);
+          this.searchRequestSent=false;
+          this.attractions=attractions;
         }).catch(err=>{
           console.log(err);
         });
@@ -35,5 +39,6 @@ export class SearchRateAttractionsComponent {
 
   handlePopularityChange(popularity: String){
     this.selectedPopularity=popularity;
+    this.handleSearchInputChange(this.searchValue);
   }
 }

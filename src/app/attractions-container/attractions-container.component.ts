@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Attraction } from '../../interfaces/Attraction';
 
 @Component({
   selector: 'app-attractions-container',
@@ -6,5 +7,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./attractions-container.component.css']
 })
 export class AttractionsContainerComponent {
-
+  @Input()
+  attractions: Attraction[] = [];
+  @Input()
+  searchRequestSent: Boolean = false;
 }

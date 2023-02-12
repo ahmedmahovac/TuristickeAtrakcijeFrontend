@@ -1,3 +1,20 @@
-<div class="container">
-    
-</div>
+<div class="container p-3">
+    <div *ngIf="!searchRequestSent; else elseBlock">
+      <div class="row">
+        <app-attraction-card
+          class="col-12 col-md-6 col-lg-4"
+          *ngFor="let attraction of attractions"
+          [attraction]="attraction"
+        ></app-attraction-card>
+      </div>
+    </div>
+    <ng-template #elseBlock
+      ><div class="text-center d-flex flex-column align-items-center justify-content-center">
+        <h2 class="text-secondary">Loading</h2>
+        <img
+          width="100px"
+          height="100px"
+          src="https://www.esserevoce.it/wp-content/uploads/2018/02/animated-gif-transparent-background-14.gif"
+        /></div
+    ></ng-template>
+  </div>
