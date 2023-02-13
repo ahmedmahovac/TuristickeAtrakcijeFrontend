@@ -4,8 +4,7 @@ export interface Attraction {
     description: String,
     lat: Number, 
     lon: Number,
-    ratingSum: Number,
-    ratingsCount: Number,
+    ratingAvg: number,
     municipalityName: String,
     countryName: String,
     images:  any[]

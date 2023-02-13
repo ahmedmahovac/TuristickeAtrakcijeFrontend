@@ -40,4 +40,11 @@ async getBlobPicture(attractionId: Number, pictureInfoId: Number): Promise<any>{
   return firstValueFrom(this.http.get("http://localhost:8080/api/attractions/"+attractionId+"/pictures/"+pictureInfoId, { responseType: "blob" }));
 }
 
+async rateAttraction(attractionId: Number, rating: number) : Promise<Attraction>{
+  const body = {
+    rating: rating
+  }
+  return firstValueFrom(this.http.put<Attraction>("http://localhost:8080/api/attractions/rate/"+attractionId,body));
+}
+
 }

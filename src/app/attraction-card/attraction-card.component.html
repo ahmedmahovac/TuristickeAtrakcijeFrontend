@@ -5,7 +5,9 @@
       <p>{{ "lat " + attraction.lat + " lon " + attraction.lon }}</p>
     </div>
     <div class="d-flex flex-row-reverse">
-        <p>{{attraction.ratingSum + " " +attraction.ratingsCount}}</p>
+        <p>{{1}}</p>
       </div>
     <img class="w-100 overflow-hidden" *ngIf="attraction.images!==null && attraction.images.length!==0" src={{attraction.images[0]}}/> 
+    <ngb-rating [readonly]="rateRequestSent" [(rate)]="attraction.ratingAvg" [max]="5.0" (rateChange)="handleRatingChange($event)"></ngb-rating>
+
   </div>

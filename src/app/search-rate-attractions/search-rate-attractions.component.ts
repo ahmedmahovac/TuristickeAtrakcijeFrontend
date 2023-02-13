@@ -33,7 +33,7 @@ export class SearchRateAttractionsComponent {
         console.log("sending api request now"); 
         this.attractionService.searchAttractions(this.searchValue, this.selectedPopularity).then((attractions)=>{
           console.log("dobavio sve atrakcije " + attractions.length);
-          this.searchRequestSent=false;
+          this.searchRequestSent=false; // to stop loading indicator being displayed, even tho not all needed information is loaded
           console.log("sad jos slike da dobavim");
           attractions.forEach((attraction,attractionIndex)=>{
             attraction.images = []; // so it cant be undefined
@@ -49,9 +49,8 @@ export class SearchRateAttractionsComponent {
                   let reader = new FileReader();
                   reader.addEventListener("load", () => {
                     attraction.images.push(reader.result);
-                    console.log("zavrseno bre");
                     if(pictureInfoIndex==pictureInfos.length-1){
-                      this.attractions.push(attraction);
+                      this.attractions.push(attraction); 
                     }
                   }, false);
                
