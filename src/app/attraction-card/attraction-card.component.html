@@ -7,4 +7,5 @@
     <div class="d-flex flex-row-reverse">
         <p>{{attraction.ratingSum + " " +attraction.ratingsCount}}</p>
       </div>
+    <img class="w-100 overflow-hidden" *ngIf="attraction.images!==null && attraction.images.length!==0" src={{attraction.images[0]}}/> 
   </div>

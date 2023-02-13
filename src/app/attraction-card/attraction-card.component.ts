@@ -8,6 +8,6 @@ import { Attraction } from '../../interfaces/Attraction';
 })
 export class AttractionCardComponent {
   @Input()
-  attraction: Attraction = {name: "", description: "", lat: 0.0, lon: 0.0, ratingSum: 0, ratingsCount: 0, municipalityName: "", countryName: ""};
+  attraction: Attraction = {id: -1, name: "", description: "", lat: 0.0, lon: 0.0, ratingSum: 0, ratingsCount: 0, municipalityName: "", countryName: "", images: []};
   
 }

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Attraction } from '../../interfaces/Attraction';
+import { PictureInfo } from '../../interfaces/PictureInfo';
 import { AttractionService } from '../../services/attraction.service';
 
 
@@ -14,6 +15,9 @@ export class SearchRateAttractionsComponent {
 
   }
 
+
+
+
   timer: ReturnType<typeof setTimeout> = setTimeout(() => { });
   searchValue: String = "";
   selectedPopularity: String = "";
@@ -24,12 +28,44 @@ export class SearchRateAttractionsComponent {
     this.searchValue=searchValue;
     clearTimeout(this.timer);
       this.timer = setTimeout(() => {
+        this.attractions = []; // so it doesn't add up
         this.searchRequestSent=true;
         console.log("sending api request now"); 
         this.attractionService.searchAttractions(this.searchValue, this.selectedPopularity).then((attractions)=>{
           console.log("dobavio sve atrakcije " + attractions.length);
           this.searchRequestSent=false;
-          this.attractions=attractions;
+          console.log("sad jos slike da dobavim");
+          attractions.forEach((attraction,attractionIndex)=>{
+            attraction.images = []; // so it cant be undefined
+            console.log("dobavljam slike atrakcija za atrakciju sa id-em " + attraction.id);
+            this.attractionService.getAttractionPictures(attraction.id).then(pictureInfos=>{
+              console.log("dobavio picture info za atrakciju sa id-em " + attraction.id + " velicine " + pictureInfos.length);
+              if(pictureInfos.length==0){
+                this.attractions.push(attraction);
+              }
+              pictureInfos.forEach((pictureInfo, pictureInfoIndex)=>{
+                console.log("dobavljam blob pictureInfo-a");
+                this.attractionService.getBlobPicture(attraction.id, pictureInfo.id).then((imageBlob=>{
+                  let reader = new FileReader();
+                  reader.addEventListener("load", () => {
+                    attraction.images.push(reader.result);
+                    console.log("zavrseno bre");
+                    if(pictureInfoIndex==pictureInfos.length-1){
+                      this.attractions.push(attraction);
+                    }
+                  }, false);
+               
+                  if (imageBlob) {
+                     reader.readAsDataURL(imageBlob);
+                  }
+                })).catch(err=>{
+                  console.log(err);
+                });
+              });
+            }).catch(err=>{
+              console.log(err);
+            });
+          });
         }).catch(err=>{
           console.log(err);
         });

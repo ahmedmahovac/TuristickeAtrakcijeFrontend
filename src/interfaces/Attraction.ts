@@ -1,4 +1,5 @@
 export interface Attraction {
+    id: Number,
     name: String,
     description: String,
     lat: Number, 
@@ -6,5 +7,6 @@ export interface Attraction {
     ratingSum: Number,
     ratingsCount: Number,
     municipalityName: String,
-    countryName: String
+    countryName: String,
+    images:  any[]
 }
