@@ -9,5 +9,5 @@
       </div>
     <img class="w-100 overflow-hidden" *ngIf="attraction.images!==null && attraction.images.length!==0" src={{attraction.images[0]}}/> 
     <ngb-rating [readonly]="rateRequestSent" [(rate)]="attraction.ratingAvg" [max]="5.0" (rateChange)="handleRatingChange($event)"></ngb-rating>
-
+    <p class="text-muted">{{attraction.ratingAvg}}</p>
   </div>
