@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/services/auth.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { AuthService } from 'src/services/auth.service';
 })
 export class LoginComponent {
 
-  constructor(private authService: AuthService){
+  constructor(private authService: AuthService, private router: Router){
 
   }
 
@@ -25,6 +26,8 @@ export class LoginComponent {
     this.loginInvalid=false;
     this.authService.login(this.form.value).then(response=>{
       console.log(response);
+      this.authService.setJwtToken(response.token);
+      this.router.navigate(["/dashboard"]);
     }).catch(err=>{
       console.log(err);
       this.loginInvalid=true;

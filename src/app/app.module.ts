@@ -10,8 +10,10 @@ import { RegisterComponent } from './register/register.component';
 import { SearchRateAttractionsComponent } from './search-rate-attractions/search-rate-attractions.component';
 import { AttractionsContainerComponent } from './attractions-container/attractions-container.component';
 import { AttractionCardComponent } from './attraction-card/attraction-card.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { JwtInterceptor } from './interceptors/jwt.interceptor';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     RegisterComponent,
     SearchRateAttractionsComponent,
     AttractionsContainerComponent,
-    AttractionCardComponent
+    AttractionCardComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +33,11 @@ import { ReactiveFormsModule } from '@angular/forms';
     HttpClientModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: JwtInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
