@@ -1,0 +1,8 @@
+<div class="d-flex flex-column justify-content-center align-items-center mt-4">
+<app-country *ngFor="let country of countries" [country]="country"></app-country>
+ <form [formGroup]="form" class="container d-flex w-100">
+ <input type="text" class="flex-grow-1 rounded mx-2 form-control" formControlName="countryName"/>
+ <button type="button" class="btn btn-dark px-4" (click)="handleAddCountry()" [disabled]="form.invalid">Add country</button>
+  <p *ngIf="form.invalid">Invalid</p>
+</form>
+</div>

@@ -14,6 +14,11 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
+import { DashboardTabComponent } from './dashboard-tab/dashboard-tab.component';
+import { CountriesComponent } from './countries/countries.component';
+import { MunicipalitiesComponent } from './municipalities/municipalities.component';
+import { AttractionsDashboardComponent } from './attractions-dashboard/attractions-dashboard.component';
+import { CountryComponent } from './country/country.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +29,12 @@ import { JwtInterceptor } from './interceptors/jwt.interceptor';
     SearchRateAttractionsComponent,
     AttractionsContainerComponent,
     AttractionCardComponent,
-    DashboardComponent
+    DashboardComponent,
+    DashboardTabComponent,
+    CountriesComponent,
+    MunicipalitiesComponent,
+    AttractionsDashboardComponent,
+    CountryComponent
   ],
   imports: [
     BrowserModule,
