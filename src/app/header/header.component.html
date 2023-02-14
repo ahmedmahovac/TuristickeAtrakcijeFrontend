@@ -11,10 +11,13 @@
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNav">
-    <div class="navbar-nav">
+    <div class="navbar-nav d-flex flex-row w-100">
+      <div class="flex-grow-1 d-flex flex-row">
       <a [routerLink]="'/'" class="nav-item nav-link" href="#">Home</a>
       <a [routerLink]="'/login'" class="nav-item nav-link" href="#" *ngIf="!this.authService.isLoggedIn()">Login</a>
       <a [routerLink]="'/register'" class="nav-item nav-link" href="#" *ngIf="!this.authService.isLoggedIn()">Register</a>
+      <a [routerLink]="'/dashboard'" class="nav-item nav-link" href="#" *ngIf="this.authService.isLoggedIn()">Dashboard</a>
+      </div>
       <button class="btn btn-light btn-outline-secondary" *ngIf="this.authService.isLoggedIn()" type="button" (click)="handleLogout()">Logout</button>
     </div>
   </div>

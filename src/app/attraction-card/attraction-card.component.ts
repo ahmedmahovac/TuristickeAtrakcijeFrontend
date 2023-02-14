@@ -13,9 +13,10 @@ export class AttractionCardComponent {
 
   }
 
+
   @Input()
   attraction: Attraction = {id: -1, name: "", description: "", lat: 0.0, lon: 0.0, ratingAvg: 0.0, municipalityName: "", countryName: "", images: []};
-  rateRequestSent: boolean = false;
+  attractionRated: boolean = false;
   //rating: number = this.attraction.ratingsCount==0 ? 0 : this.attraction.ratingSum / this.attraction.ratingsCount;
 
 
@@ -23,11 +24,11 @@ export class AttractionCardComponent {
 
   handleRatingChange(newRating: number){
     // rating property is already bidirectionally binded, we have no use of this parameter but we need this event in order to know when to send api request
-    this.rateRequestSent=true;
     this.attractionService.rateAttraction(this.attraction.id, this.attraction.ratingAvg).then((updatedAttraction)=>{
       this.attraction.ratingAvg=updatedAttraction.ratingAvg;
-      this.rateRequestSent=false;
-      console.log(this.attraction.ratingAvg);
+      this.attractionRated=true;
+    }).catch(err=>{
+      console.log(err);
     });
     //this.rating = this.attraction.ratingsCount==0 ? 0 : this.attraction.ratingSum / this.attraction.ratingsCount;
   }

@@ -27,9 +27,9 @@ export class SearchRateAttractionsComponent {
   handleSearchInputChange(searchValue: String){
     this.searchValue=searchValue;
     clearTimeout(this.timer);
+    this.searchRequestSent=true;
       this.timer = setTimeout(() => {
         this.attractions = []; // so it doesn't add up
-        this.searchRequestSent=true;
         console.log("sending api request now"); 
         this.attractionService.searchAttractions(this.searchValue, this.selectedPopularity).then((attractions)=>{
           console.log("dobavio sve atrakcije " + attractions.length);
@@ -70,6 +70,10 @@ export class SearchRateAttractionsComponent {
         });
       }, 1000); // call specified function after 1s
 
+  }
+
+  handleSearch(){
+    this.handleSearchInputChange(this.searchValue);
   }
 
   handlePopularityChange(popularity: String){

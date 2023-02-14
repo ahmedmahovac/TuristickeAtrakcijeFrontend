@@ -3,7 +3,7 @@
 <div class="input-group rounded">
     <input #search (input)="handleSearchInputChange(search.value)" type="search" class="form-control rounded" placeholder="Search attractions" aria-label="Search" aria-describedby="search-addon" />
     <span class="input-group-text border-0" id="search-addon">
-      <i class="fa fa-search"></i>
+      <i class="fa fa-search" (click)="handleSearch()"></i>
     </span>
 </div>
  <div class="text-center mt-2">
