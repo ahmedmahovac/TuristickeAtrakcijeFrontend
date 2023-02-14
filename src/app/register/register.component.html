@@ -1,21 +1,25 @@
-<form class="container-sm ">
+<form class="container-sm" [formGroup]="form">
 
-    <div class="form-outline mb-4 ">
-      <input type="email" id="formEmail" class="form-control" />
-      <label class="form-label" for="formEmail">Email address</label>
+    <div class="form-outline mb-4">
+      <input type="text" id="formUsername" class="form-control" formControlName="username"/>
+      <label class="form-label" for="formUsername">Username</label>
+      <div><p  *ngIf="form.get('username')?.dirty && form.get('username')?.invalid" class="alert alert-danger">Username must contain at least 5 characters</p></div>
     </div>
+    
   
     <div class="form-outline mb-4">
-      <input type="password" id="formPw" class="form-control " />
+      <input type="password" id="formPw" class="form-control" formControlName="password" (input)="onPasswordChange()"/>
       <label class="form-label" for="formPw">Password</label>
+      <div><p  *ngIf="form.get('password')?.dirty && form.get('password')?.invalid" class="alert alert-danger">Password must contain at least 5 characters</p></div>
     </div>
-
+    
 
     <div class="form-outline mb-4">
-        <input type="password" id="formConfirmPw" class="form-control " />
+        <input type="password" id="formConfirmPw" class="form-control" formControlName="confirmPassword" (input)="onPasswordChange()"/>
         <label class="form-label" for="formConfirmPw">Confirm password</label>
+        <div><p  *ngIf="form.get('confirmPassword')?.dirty && form.get('confirmPassword')?.invalid" class="alert alert-danger" >Passwords do not match</p></div>
       </div>
-  
-    <button type="button" class="btn btn-primary  mb-4">Register</button>
+      
+    <button [disabled]="form.invalid" type="button" class="btn btn-primary  mb-4" (click)="handleRegisterFormSubmit()">Sign in</button>
   
   </form>
