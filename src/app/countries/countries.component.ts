@@ -11,10 +11,10 @@ import { CountryMunicipalityService } from 'src/services/country-municipality.se
 export class CountriesComponent {
 
   countries: Country[] = [];
-
+  countryAdded: boolean = false;
 
   form = new FormGroup({
-    countryName: new FormControl("", [Validators.min(1)])
+    name: new FormControl("", [Validators.required])
   }
   );
 
@@ -28,12 +28,21 @@ export class CountriesComponent {
 
 
   handleAddCountry(){
-    console.log("uso");
+    this.countryAdded=false;
     this.countryMunicipalityService.addCountry(this.form.value).then((country)=>{
-      console.log(country);
+      this.countries.push(country);
+      this.countryAdded=true;
     }).catch(err=>{
       console.log(err);
     });
+  }
+
+
+  handleCountryDeleted(id: Number){
+    console.log("brisem iz viewa");
+    this.countries = this.countries.filter((country)=>{
+      return country.id != id;
+    })
   }
 
 }
