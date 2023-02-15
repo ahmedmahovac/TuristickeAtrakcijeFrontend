@@ -20,9 +20,9 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     children: [
       {path: '', redirectTo:"countries", pathMatch: 'full'},
+      {path: 'countries/:countryId/municipalities/:municipalityId', component: AttractionsDashboardComponent},
+      {path: 'countries/:countryId/municipalities', component: MunicipalitiesComponent},
       {path: 'countries', component: CountriesComponent},
-      {path: 'municipalities', component: MunicipalitiesComponent},
-      {path: 'attractions', component: AttractionsDashboardComponent}
     ]
   },
   {path: "**", redirectTo:""}

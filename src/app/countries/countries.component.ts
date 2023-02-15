@@ -45,4 +45,8 @@ export class CountriesComponent {
     })
   }
 
+  handleCountryNameInputChange(){
+    this.countryAdded=false;
+  }
+
 }

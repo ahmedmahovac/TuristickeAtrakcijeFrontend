@@ -1,4 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Country } from 'src/interfaces/Country';
 import { CountryMunicipalityService } from 'src/services/country-municipality.service';
 
@@ -9,7 +10,7 @@ import { CountryMunicipalityService } from 'src/services/country-municipality.se
 })
 export class CountryComponent {
 
-  constructor(private countryMunicipalityService: CountryMunicipalityService){
+  constructor(private countryMunicipalityService: CountryMunicipalityService, private router: Router, private route: ActivatedRoute){
 
   }
 
@@ -27,6 +28,11 @@ export class CountryComponent {
     }).catch(err=>{
       console.log(err);
     });
+  }
+
+
+  handleOpenCountry(){
+    this.router.navigate([this.country.id + "/municipalities"], {relativeTo: this.route});
   }
 
 }

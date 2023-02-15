@@ -1,1 +1,10 @@
-<p>municipalities works!</p>
+<div class="d-flex flex-column justify-content-center align-items-center mt-4">
+    <h3 class="text-muted mb-3">Municipalities for country: </h3>
+    <app-municipality (municipalityDeletedEvent)="handleMunicipalityDeleted($event)" *ngFor="let municipality of municipalities" [municipality]="municipality"></app-municipality>
+     <form [formGroup]="form" class="container d-flex w-100">
+     <input type="text" class="flex-grow-1 rounded mx-2 form-control" placeholder="Municipality name" formControlName="name" (input)="handleMunicipalityNameInputChange()"/>
+     <button type="button" class="btn btn-dark px-4" (click)="handleAddMunicipality()" [disabled]="form.invalid">Add municipality</button>
+    </form>
+    <p *ngIf="form.get('name')?.invalid" class="alert alert-danger my-2">Municipality name is required.</p>
+    <p *ngIf="municipalityAdded" class="alert alert-success my-2">Municipality has been successfully added to the selected country.</p>
+    </div>
