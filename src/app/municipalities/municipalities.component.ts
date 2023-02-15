@@ -15,9 +15,10 @@ export class MunicipalitiesComponent {
   municipalities: Municipality[] = [];
   municipalityAdded: boolean = false;
   countryId: String = "";
+  countryName: String = "";
 
   form = new FormGroup({
-    name: new FormControl("", [Validators.required])
+    name: new FormControl("", [Validators.required, Validators.minLength(4)])
   }
   );
 
@@ -33,11 +34,13 @@ export class MunicipalitiesComponent {
       if(countryId!==null){
         this.countryId = countryId;
         this.countryMunicipalityService.getMunicipalities(countryId).then(municipalities=>{
-          console.log("dobavljene opcine " + municipalities.length);
           this.municipalities=municipalities;
         }).catch(err=>{
           console.log(err);
         });
+        this.countryMunicipalityService.getCountry(countryId).then(country=>{
+          this.countryName=country.name;
+        })
       }
     })
 
@@ -53,6 +56,7 @@ export class MunicipalitiesComponent {
     this.countryMunicipalityService.addMunicipality(this.countryId, this.form.value).then((municipality)=>{
       this.municipalities.push(municipality);
       this.municipalityAdded=true;
+      this.form.reset();
     }).catch(err=>{
       console.log(err);
     });

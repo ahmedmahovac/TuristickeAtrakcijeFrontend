@@ -14,7 +14,7 @@ export class CountriesComponent {
   countryAdded: boolean = false;
 
   form = new FormGroup({
-    name: new FormControl("", [Validators.required])
+    name: new FormControl("", [Validators.required, Validators.minLength(4)])
   }
   );
 
@@ -32,6 +32,7 @@ export class CountriesComponent {
     this.countryMunicipalityService.addCountry(this.form.value).then((country)=>{
       this.countries.push(country);
       this.countryAdded=true;
+      this.form.reset();
     }).catch(err=>{
       console.log(err);
     });

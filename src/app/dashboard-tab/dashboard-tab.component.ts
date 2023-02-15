@@ -11,6 +11,12 @@ export class DashboardTabComponent {
   constructor(private route: ActivatedRoute){
   }
 
+
+
+  handleClick(){
+    console.log(this.route.url);
+  }
+
   
 
   

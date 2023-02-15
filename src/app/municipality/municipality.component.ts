@@ -31,6 +31,6 @@ export class MunicipalityComponent {
 
 
   handleOpenMunicipality(){
-    //this.router.navigate([this.municipality.id + "/municipalities"], {relativeTo: this.route});
+    this.router.navigate([this.municipality.id+"/attractions"], {relativeTo: this.route});
   }
 }

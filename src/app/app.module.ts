@@ -20,6 +20,7 @@ import { MunicipalitiesComponent } from './municipalities/municipalities.compone
 import { AttractionsDashboardComponent } from './attractions-dashboard/attractions-dashboard.component';
 import { CountryComponent } from './country/country.component';
 import { MunicipalityComponent } from './municipality/municipality.component';
+import { AttractionDashboardComponent } from './attraction-dashboard/attraction-dashboard.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { MunicipalityComponent } from './municipality/municipality.component';
     MunicipalitiesComponent,
     AttractionsDashboardComponent,
     CountryComponent,
-    MunicipalityComponent
+    MunicipalityComponent,
+    AttractionDashboardComponent
   ],
   imports: [
     BrowserModule,

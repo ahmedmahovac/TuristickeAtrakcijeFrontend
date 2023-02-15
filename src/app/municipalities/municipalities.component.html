@@ -1,5 +1,5 @@
 <div class="d-flex flex-column justify-content-center align-items-center mt-4">
-    <h3 class="text-muted mb-3">Municipalities for country: </h3>
+    <h3 class="text-muted mb-3">Municipalities for country: {{countryName}}</h3>
     <app-municipality (municipalityDeletedEvent)="handleMunicipalityDeleted($event)" *ngFor="let municipality of municipalities" [municipality]="municipality"></app-municipality>
      <form [formGroup]="form" class="container d-flex w-100">
      <input type="text" class="flex-grow-1 rounded mx-2 form-control" placeholder="Municipality name" formControlName="name" (input)="handleMunicipalityNameInputChange()"/>

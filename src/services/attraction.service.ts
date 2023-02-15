@@ -47,4 +47,7 @@ async rateAttraction(attractionId: Number, rating: number) : Promise<Attraction>
   return firstValueFrom(this.http.put<Attraction>("http://localhost:8080/api/attractions/rate/"+attractionId,body));
 }
 
+
+
+
 }
