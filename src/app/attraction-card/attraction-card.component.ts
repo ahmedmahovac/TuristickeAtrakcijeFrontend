@@ -15,7 +15,7 @@ export class AttractionCardComponent {
 
 
   @Input()
-  attraction: Attraction = {id: -1, name: "", description: "", lat: 0.0, lon: 0.0, ratingAvg: 0.0, municipalityName: "", countryName: "", images: []};
+  attraction: Attraction = {id: -1, name: "", description: "", lat: 0.0, lon: 0.0, ratingAvg: 0.0, municipalityName: "", countryName: "", images: [], active: false};
   attractionRated: boolean = false;
   //rating: number = this.attraction.ratingsCount==0 ? 0 : this.attraction.ratingSum / this.attraction.ratingsCount;
 

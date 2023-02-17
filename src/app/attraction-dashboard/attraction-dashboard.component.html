@@ -1,9 +1,10 @@
-<div class="d-flex flex-row align-items-center bg-primary p-2 rounded mb-2">
+<div class="d-flex flex-row align-items-center bg-secondary p-2 rounded mb-2">
     <p class="m-3 flex-grow-1 fw-bold">{{attraction.name}}</p>
     <button type="button" class="btn btn-danger mx-2" (click)="handleDeleteAttraction()">Delete</button>
-    <div class="custom-control custom-switch">
-        <input type="checkbox" class="custom-control-input" id="activatedSwitch">
-        <label class="custom-control-label" for="activatedSwitch">Activate attraction (make it public)</label>
-      </div>
+    <div class="form-check form-switch">
+      <input class="form-check-input" type="checkbox" role="switch" id="switch" (change)="handleActivateSwitchChange($event)">
+      <label class="form-check-label fw-bold" for="switch" >{{attraction.active ? "Deactivate" : "Activate"}}</label>
+    </div>
 </div>
+
 

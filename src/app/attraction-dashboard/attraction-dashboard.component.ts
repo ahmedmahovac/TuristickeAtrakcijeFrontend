@@ -15,7 +15,7 @@ export class AttractionDashboardComponent {
   }
 
   @Input()
-  attraction: Attraction = {id: -1, name: "", description: "", lat: 0, lon: 0, ratingAvg: 0, municipalityName: "", countryName: "", images: []};
+  attraction: Attraction = {id: -1, name: "", description: "", lat: 0, lon: 0, ratingAvg: 0, municipalityName: "", countryName: "", images: [], active: false};
 
   @Output()
   attractionDeletedEvent = new EventEmitter<Number>();
@@ -25,6 +25,17 @@ export class AttractionDashboardComponent {
     this.countryMunicipalityService.deleteAttraction(this.attraction.id+"").then(response=>{
       // emit output to remove deleted attraction from view
       this.attractionDeletedEvent.emit(this.attraction.id); 
+    }).catch(err=>{
+      console.log(err);
+    });
+  }
+
+
+  handleActivateSwitchChange(event: any){
+    let newValue = event.currentTarget.checked;
+    this.countryMunicipalityService.setActiveAttraction(this.attraction, newValue).then(response=>{
+      console.log(response);
+      this.attraction.active = newValue;
     }).catch(err=>{
       console.log(err);
     });

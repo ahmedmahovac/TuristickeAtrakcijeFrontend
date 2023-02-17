@@ -7,5 +7,6 @@ export interface Attraction {
     ratingAvg: number,
     municipalityName: String,
     countryName: String,
-    images:  any[]
+    images:  any[],
+    active: boolean
 }

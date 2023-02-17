@@ -64,4 +64,11 @@ export class CountryMunicipalityService {
     return firstValueFrom(this.http.post<PictureInfo>(this.host+"api/attractions/"+id+"/picture",formData));
   }
 
+
+
+  async setActiveAttraction(attraction: Attraction, value: boolean): Promise<Attraction>{
+    attraction.active = value;
+      return firstValueFrom(this.http.put<Attraction>(this.host+"api/attractions/"+attraction.id, attraction));
+  }
+
 }
