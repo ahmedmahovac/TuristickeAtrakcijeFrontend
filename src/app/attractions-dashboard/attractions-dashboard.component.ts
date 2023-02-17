@@ -18,6 +18,7 @@ export class AttractionsDashboardComponent {
   municipalityId: String="";
   municipalityName: String = "";
   countryName: String = "";
+  
 
   addingAttractionActive : Boolean = false;
 
@@ -72,7 +73,7 @@ export class AttractionsDashboardComponent {
       // sad uploaduj slike
       const formData = new FormData();
       formData.append("picture",this.form.get("pictureSource")?.value!);
-      console.log(formData);
+      console.log(this.form.get("pictureSource")?.value!);
       this.countryMunicipalityService.addPictures(attraction.id, formData).then((response)=>{
         console.log(response);
       }).catch(err=>{
@@ -103,6 +104,7 @@ export class AttractionsDashboardComponent {
   }
 
   handleFileChange(event:any){
+    console.log("uso");
     if(event.target.files.length>0){
       const file = event.target.files[0];
       this.form.patchValue({

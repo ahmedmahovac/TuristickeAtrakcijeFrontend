@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -11,6 +11,8 @@ export class DashboardTabComponent {
   constructor(private route: ActivatedRoute){
   }
 
+  @Input()
+  selectedTab: Number = 0;
 
 
   handleClick(){

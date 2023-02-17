@@ -1,2 +1,2 @@
-<app-dashboard-tab></app-dashboard-tab>
-<router-outlet></router-outlet>
+<app-dashboard-tab [selectedTab]="selectedTab"></app-dashboard-tab>
+<router-outlet (activate)="handleSelectedTabChange($event)"></router-outlet>
