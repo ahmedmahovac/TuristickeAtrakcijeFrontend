@@ -70,5 +70,10 @@ export class CountryMunicipalityService {
     attraction.active = value;
       return firstValueFrom(this.http.put<Attraction>(this.host+"api/attractions/"+attraction.id, attraction));
   }
+  
+
+  async updateAttraction(attractionId: Number, body: any): Promise<Attraction>{
+    return firstValueFrom(this.http.put<Attraction>(this.host+"api/attractions/"+attractionId, body));
+  }
 
 }

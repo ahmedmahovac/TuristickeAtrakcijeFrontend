@@ -19,6 +19,8 @@ export class AttractionDashboardComponent {
 
   @Output()
   attractionDeletedEvent = new EventEmitter<Number>();
+  @Output()
+  attractionUpdateEvent = new EventEmitter<Attraction>();
 
   handleDeleteAttraction(){
     console.log("deleting attraction");
@@ -40,5 +42,12 @@ export class AttractionDashboardComponent {
       console.log(err);
     });
   }
+
+
+  handleUpdateAttraction(){
+    // fill form with attraction data
+    this.attractionUpdateEvent.emit(this.attraction);
+  }
+
 
 }

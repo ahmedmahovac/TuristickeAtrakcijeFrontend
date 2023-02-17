@@ -18,10 +18,10 @@ export class AttractionsDashboardComponent {
   municipalityId: String="";
   municipalityName: String = "";
   countryName: String = "";
-  
+  attractionUpdatingId: Number = -1;
 
   addingAttractionActive : Boolean = false;
-
+  updatingAttractionActive: Boolean = false;
 
   files: any[] = [];
 
@@ -29,8 +29,8 @@ export class AttractionsDashboardComponent {
   form = new FormGroup({
     name: new FormControl("", [Validators.required, Validators.minLength(4)]),
     description: new FormControl("", [Validators.required, Validators.minLength(10)]),
-    lat: new FormControl(null, [Validators.required]),
-    lon: new FormControl(null, [Validators.required]),
+    lat: new FormControl(0, [Validators.required]),
+    lon: new FormControl(0, [Validators.required]),
     picture: new FormControl("", [Validators.required])
   }
   );
@@ -76,6 +76,7 @@ export class AttractionsDashboardComponent {
       this.files=[];
       // sad uploaduj slike
       const formData = new FormData();
+      // not all pictures are added
       formData.append("picture",this.files[0]);
       console.log(this.files.length);
       this.countryMunicipalityService.addPictures(attraction.id, formData).then((response)=>{
@@ -115,5 +116,32 @@ export class AttractionsDashboardComponent {
     }
   }
 
+
+  handleUpdateAttraction(){
+    // update attraction with provided data
+    this.countryMunicipalityService.updateAttraction(this.attractionUpdatingId, this.form.value).then(attraction=>{
+      console.log(attraction);
+      this.attractions = this.attractions.map(item=>{
+        if(attraction.id==item.id){
+          return attraction;
+        }
+        else return item;
+      })
+    }).catch(err=>{
+      console.log(err);
+    });
+    this.updatingAttractionActive=false;
+  }
+
+  handleAttractionUpdateEvent(attraction: Attraction){
+    this.form.patchValue({
+      name: attraction.name+"",
+      description: attraction.description+"",
+      lat: attraction.lat.valueOf(),
+      lon: attraction.lon.valueOf()
+    });
+    this.updatingAttractionActive=true;
+    this.attractionUpdatingId=attraction.id;
+  }
 
 }

@@ -1,8 +1,8 @@
 <div class="d-flex flex-column justify-content-center align-items-center mt-4">
     <h3 class="text-muted mb-3">Attractions for municipality {{municipalityName}}, country {{countryName}}</h3>
-    <app-attraction-dashboard (attractionDeletedEvent)="handleAttractionDeleted($event)" *ngFor="let attraction of attractions" [attraction]="attraction"></app-attraction-dashboard>
+    <app-attraction-dashboard (attractionUpdateEvent)="handleAttractionUpdateEvent($event)"  (attractionDeletedEvent)="handleAttractionDeleted($event)" *ngFor="let attraction of attractions" [attraction]="attraction"></app-attraction-dashboard>
      
-    <form *ngIf="addingAttractionActive" [formGroup]="form" class="container d-flex flex-column">
+    <form *ngIf="addingAttractionActive || updatingAttractionActive" [formGroup]="form" class="container d-flex flex-column">
      <input type="text" class="rounded form-control mb-2" placeholder="Name" formControlName="name" (click)="handleInputChange()"/>
      <textarea class="form-control mb-2" placeholder="Description" formControlName="description" (click)="handleInputChange()"></textarea>
      <div class="d-flex flex-direction-row mb-2">
@@ -11,10 +11,11 @@
      </div>
      <input id="file" type="file" formControlName="picture" class="form-control mb-2" accept=".jpeg, .jpg, .png" (change)="handleFileChange($event)"/>
      <p class="alert alert-info">{{files.length}} files chosen.</p>
-     <button type="button" class="btn btn-dark px-4" (click)="handleAddAttraction()" [disabled]="form.invalid">Add attraction</button>
+     <button type="button" class="btn btn-dark px-4" (click)="handleUpdateAttraction()" [disabled]="form.invalid">Update attraction</button>
+     <button *ngIf="!updatingAttractionActive" type="button" class="btn btn-dark px-4" (click)="handleAddAttraction()" [disabled]="form.invalid">Add attraction</button>
     </form>
 
-    <button  *ngIf="!addingAttractionActive"  type="button" class="btn btn-info mt-2" (click)="handleActivateAddingAttraction()">Add more attractions?</button>
+    <button  *ngIf="!addingAttractionActive && !updatingAttractionActive"  type="button" class="btn btn-info mt-2" (click)="handleActivateAddingAttraction()">Add more attractions?</button>
     
     
     <p *ngIf="attractionAdded" class="alert alert-success my-2">Attraction has been successfully added to the selected country.</p>
