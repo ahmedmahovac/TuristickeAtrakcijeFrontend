@@ -22,13 +22,16 @@ export class AttractionsDashboardComponent {
 
   addingAttractionActive : Boolean = false;
 
+
+  files: any[] = [];
+
+
   form = new FormGroup({
     name: new FormControl("", [Validators.required, Validators.minLength(4)]),
     description: new FormControl("", [Validators.required, Validators.minLength(10)]),
     lat: new FormControl(null, [Validators.required]),
     lon: new FormControl(null, [Validators.required]),
-    picture: new FormControl("", [Validators.required]),
-    pictureSource: new FormControl("", [Validators.required])
+    picture: new FormControl("", [Validators.required])
   }
   );
 
@@ -70,10 +73,11 @@ export class AttractionsDashboardComponent {
     this.countryMunicipalityService.addAttraction(this.municipalityId, this.form.value).then((attraction)=>{
       this.attractions.push(attraction);
       this.form.reset();
+      this.files=[];
       // sad uploaduj slike
       const formData = new FormData();
-      formData.append("picture",this.form.get("pictureSource")?.value!);
-      console.log(this.form.get("pictureSource")?.value!);
+      formData.append("picture",this.files[0]);
+      console.log(this.files.length);
       this.countryMunicipalityService.addPictures(attraction.id, formData).then((response)=>{
         console.log(response);
       }).catch(err=>{
@@ -107,9 +111,7 @@ export class AttractionsDashboardComponent {
     console.log("uso");
     if(event.target.files.length>0){
       const file = event.target.files[0];
-      this.form.patchValue({
-        pictureSource: file
-      });
+      this.files.push(file);
     }
   }
 
