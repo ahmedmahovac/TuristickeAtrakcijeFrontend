@@ -11,8 +11,8 @@
      </div>
      <input id="file" type="file" formControlName="picture" class="form-control mb-2" accept=".jpeg, .jpg, .png" (change)="handleFileChange($event)"/>
      <p class="alert alert-info">{{files.length}} files chosen.</p>
-     <button type="button" class="btn btn-dark px-4" (click)="handleUpdateAttraction()" [disabled]="form.invalid">Update attraction</button>
-     <button *ngIf="!updatingAttractionActive" type="button" class="btn btn-dark px-4" (click)="handleAddAttraction()" [disabled]="form.invalid">Add attraction</button>
+     <button *ngIf="!updatingAttractionActive && !addingAttractionActive" type="button" class="btn btn-dark px-4" (click)="handleUpdateAttraction()" [disabled]="form.invalid">Update attraction</button>
+     <button *ngIf="!updatingAttractionActive && addingAttractionActive" type="button" class="btn btn-dark px-4" (click)="handleAddAttraction()" [disabled]="form.invalid">Add attraction</button>
     </form>
 
     <button  *ngIf="!addingAttractionActive && !updatingAttractionActive"  type="button" class="btn btn-info mt-2" (click)="handleActivateAddingAttraction()">Add more attractions?</button>

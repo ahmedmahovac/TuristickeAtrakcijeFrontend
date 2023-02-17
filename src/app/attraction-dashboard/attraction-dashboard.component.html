@@ -3,7 +3,7 @@
     <button type="button" class="btn btn-danger mx-2" (click)="handleDeleteAttraction()">Delete</button>
     <button type="button" class="btn btn-warning mx-2" (click)="handleUpdateAttraction()">Update</button>
     <div class="form-check form-switch">
-      <input class="form-check-input" type="checkbox" role="switch" id="switch" (change)="handleActivateSwitchChange($event)">
+      <input [checked]="attraction.active" class="form-check-input" type="checkbox" role="switch" id="switch" (change)="handleActivateSwitchChange($event)">
       <label class="form-check-label fw-bold" for="switch" >{{attraction.active ? "Deactivate" : "Activate"}}</label>
     </div>
 </div>
