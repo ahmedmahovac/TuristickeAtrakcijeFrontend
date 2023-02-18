@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Attraction } from 'src/interfaces/Attraction';
+import { PictureInfo } from 'src/interfaces/PictureInfo';
 import { CountryMunicipalityService } from 'src/services/country-municipality.service';
 
 @Component({
@@ -73,16 +74,19 @@ export class AttractionsDashboardComponent {
     this.countryMunicipalityService.addAttraction(this.municipalityId, this.form.value).then((attraction)=>{
       this.attractions.push(attraction);
       this.form.reset();
-      this.files=[];
-      // sad uploaduj slike
-      const formData = new FormData();
-      // not all pictures are added
-      formData.append("picture",this.files[0]);
-      console.log(this.files.length);
-      this.countryMunicipalityService.addPictures(attraction.id, formData).then((response)=>{
-        console.log(response);
+      // upload pictures now
+      let promises: Promise<PictureInfo>[] = [];
+      this.files.forEach(file=>{
+        let formData = new FormData();
+        formData.append("picture", file);
+        promises.push(this.countryMunicipalityService.addPictures(attraction.id, formData));
+      });
+      Promise.all(promises).then((addedPictures)=>{
+        console.log(addedPictures.length);
+        this.files=[];
       }).catch(err=>{
         console.log(err);
+        this.files=[];
       });
       this.attractionAdded=true;
     }).catch(err=>{
@@ -109,7 +113,6 @@ export class AttractionsDashboardComponent {
   }
 
   handleFileChange(event:any){
-    console.log("uso");
     if(event.target.files.length>0){
       const file = event.target.files[0];
       this.files.push(file);

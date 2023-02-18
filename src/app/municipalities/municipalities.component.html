@@ -5,6 +5,6 @@
      <input type="text" class="flex-grow-1 rounded mx-2 form-control" placeholder="Municipality name" formControlName="name" (input)="handleMunicipalityNameInputChange()"/>
      <button type="button" class="btn btn-dark px-4" (click)="handleAddMunicipality()" [disabled]="form.invalid">Add municipality</button>
     </form>
-    <p *ngIf="form.get('name')?.invalid" class="alert alert-danger my-2">Municipality name is required.</p>
+    <p *ngIf="form.get('name')?.invalid && form.get('name')?.dirty" class="alert alert-danger my-2">Municipality name is required.</p>
     <p *ngIf="municipalityAdded" class="alert alert-success my-2">Municipality has been successfully added to the selected country.</p>
     </div>
