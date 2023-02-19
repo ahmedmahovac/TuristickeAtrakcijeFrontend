@@ -162,7 +162,9 @@ export class AttractionsDashboardComponent {
       this.addPicturesToAttraction(attraction.id);
       this.attractions = this.attractions.map(item=>{
         if(attraction.id==item.id){
-          return attraction;
+          let newAttraction = attraction;
+          newAttraction.images=item.images;
+          return newAttraction;
         }
         else return item;
       })
