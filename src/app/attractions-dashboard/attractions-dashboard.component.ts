@@ -133,6 +133,8 @@ export class AttractionsDashboardComponent {
     this.attractions = this.attractions.filter((attractions)=>{
       return attractions.id != id;
     })
+    this.updatingAttractionActive=false;
+    this.addingAttractionActive=false;
   }
 
 
