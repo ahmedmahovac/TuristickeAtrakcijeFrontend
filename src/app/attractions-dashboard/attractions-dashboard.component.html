@@ -9,15 +9,22 @@
         <input type="number" class="form-control mx-1" placeholder="lat" formControlName="lat" (click)="handleInputChange()">
         <input type="number" class="form-control mx-1" placeholder="lon" formControlName="lon" (click)="handleInputChange()">
      </div>
-     <input id="file" type="file" formControlName="picture" class="form-control mb-2" accept=".jpeg, .jpg, .png" (change)="handleFileChange($event)"/>
+     <input id="file" type="file" class="form-control mb-2" accept=".jpeg, .jpg, .png" (change)="handleFileChange($event)"/>
+     <div class="container" *ngIf="attractionUpdatingIndex!==-1">
+        <div class="row">
+            <div *ngFor="let image of attractions[attractionUpdatingIndex].images" class="col-md-2 col-sm-3 col-6">
+                <img class="w-100 overflow-hidden m-2" src={{image}}/>
+            </div>
+        </div>
+     </div>
      <p class="alert alert-info">{{files.length}} files chosen.</p>
-     <button *ngIf="!updatingAttractionActive && !addingAttractionActive" type="button" class="btn btn-dark px-4" (click)="handleUpdateAttraction()" [disabled]="form.invalid">Update attraction</button>
+     <button *ngIf="updatingAttractionActive && !addingAttractionActive" type="button" class="btn btn-dark px-4" (click)="handleUpdateAttraction()" [disabled]="form.invalid">Update attraction</button>
      <button *ngIf="!updatingAttractionActive && addingAttractionActive" type="button" class="btn btn-dark px-4" (click)="handleAddAttraction()" [disabled]="form.invalid">Add attraction</button>
     </form>
 
     <button  *ngIf="!addingAttractionActive && !updatingAttractionActive"  type="button" class="btn btn-info mt-2" (click)="handleActivateAddingAttraction()">Add more attractions?</button>
     
     
-    <p *ngIf="attractionAdded" class="alert alert-success my-2">Attraction has been successfully added to the selected country.</p>
+    <p *ngIf="attractionAdded && !addingAttractionActive" class="alert alert-success my-2">Attraction has been successfully added to the selected country.</p>
 </div>
 
