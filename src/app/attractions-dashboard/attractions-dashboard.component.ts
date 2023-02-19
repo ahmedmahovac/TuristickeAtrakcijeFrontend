@@ -32,7 +32,8 @@ export class AttractionsDashboardComponent {
     name: new FormControl("", [Validators.required, Validators.minLength(4)]),
     description: new FormControl("", [Validators.required, Validators.minLength(10)]),
     lat: new FormControl(0, [Validators.required]),
-    lon: new FormControl(0, [Validators.required])
+    lon: new FormControl(0, [Validators.required]),
+    active: new FormControl(false),
   }
   );
 
@@ -179,7 +180,8 @@ export class AttractionsDashboardComponent {
       name: attraction.name+"",
       description: attraction.description+"",
       lat: attraction.lat.valueOf(),
-      lon: attraction.lon.valueOf()
+      lon: attraction.lon.valueOf(),
+      active: attraction.active
     });
     this.updatingAttractionActive=true;
     this.addingAttractionActive=false;
@@ -187,6 +189,12 @@ export class AttractionsDashboardComponent {
       if(item.id==attraction.id){
         this.attractionUpdatingIndex=index;
       }
+    });
+  }
+
+  handleAttractionActiveChangeEvent(newValue: Boolean){
+    this.form.patchValue({
+      active: newValue.valueOf()
     });
   }
 

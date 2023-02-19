@@ -21,6 +21,8 @@ export class AttractionDashboardComponent {
   attractionDeletedEvent = new EventEmitter<Number>();
   @Output()
   attractionUpdateEvent = new EventEmitter<Attraction>();
+  @Output()
+  attractionActiveChangeEvent = new EventEmitter<Boolean>();
 
   handleDeleteAttraction(){
     console.log("deleting attraction");
@@ -38,6 +40,7 @@ export class AttractionDashboardComponent {
     this.countryMunicipalityService.setActiveAttraction(this.attraction, newValue).then(response=>{
       console.log(response);
       this.attraction.active = newValue;
+      this.attractionActiveChangeEvent.emit(newValue);
     }).catch(err=>{
       console.log(err);
     });
